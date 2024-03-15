@@ -22,7 +22,7 @@
             <p class="amount-name">Total sum(LKR)</p>
             <p class="total-amount">643</p>
           </div>
-           <div class="vertical-line"></div>
+           <!-- <div class="vertical-line"></div> -->
         </div>
       </form>
     </div>
