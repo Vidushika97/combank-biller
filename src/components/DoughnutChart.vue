@@ -152,13 +152,6 @@ export default {
 </script>
 
 <style scoped>
-.overview-card {
-  width: 500px !important;
-  height: auto;
-  z-index: 1;
-  border-radius: 5px;
-  color: #757575;
-}
 
 .overview-description {
   display: flex;
@@ -234,10 +227,13 @@ padding-right:10px
 .doughnut-chart-container {
   display: flex;
   align-items: flex-start;
-  width: 600px;
-  height: auto;
+  width: 700px;
+  height: 400px;
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
+  border-radius: 19.46px;
+  box-shadow: 0.2px 0.2px 3px 3px rgba(204, 204, 204, 0.25);
+  background-color: white;
 }
 .inner-doughnut{
   position:absolute;
@@ -261,7 +257,7 @@ color:#231F20;
 .legend {
   display: flex;
   margin: 20px;
-  width: 500px;
+  width: 300px;
   height: 600px;
   
 }

@@ -31,6 +31,7 @@ export default {};
   width: 1590px;
   height: 80px;
   color: #07205D;
+  box-shadow: 0.2px 0.2px 3px 3px rgba(204, 204, 204, 0.25);
 }
 .left-container {
   margin-left: 20px;

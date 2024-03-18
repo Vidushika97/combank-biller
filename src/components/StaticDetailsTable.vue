@@ -73,6 +73,8 @@ export default {};
 <style scoped>
 .section-container {
   max-width: 700px;
+  background-color: #F9FAFB;
+  border-radius: 19.46px;
 }
 .wrapper-column {
   display: flex;
@@ -97,7 +99,7 @@ export default {};
     color:#1B2559 
 }
 .selection-box{
-  margin-left: 250px;
+  margin-left: 220px;
   margin-top: 20px;
   width:176px;
   height:40px
