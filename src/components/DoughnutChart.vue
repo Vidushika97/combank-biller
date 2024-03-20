@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column-one">
           <p>Transactions Overview</p>
-          <h2>Top 10 Channels</h2>
+          <h2>{{ topCategory }}</h2>
         </div>
         <div class="column-two">
           <div class="flex-container">
@@ -12,8 +12,8 @@
               <img src="../assets/up-icon.png" />
             </div>
             <div class="header-one">
-              <p>Active Channels</p>
-              <h2>25</h2>
+              <p>{{ activeCategory }}</p>
+              <h2>{{ activeAmount }}</h2>
             </div>
           </div>
         </div>
@@ -23,61 +23,61 @@
               <img src="../assets/down-icon.png" />
             </div>
             <div class="header-one">
-              <p>Inactive Channels</p>
-              <h2>25</h2>
+              <p>{{ inactiveCategory }}</p>
+              <h2>{{ inactiveAmount }}</h2>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="doughnut-wrapper">
-    <div class="doughnut-chart-container">
-      <div class="legend">
-        <div class="legend-column">
-          <div
-            v-for="(channel, index) in chartData.labels.slice(0, 5)"
-            :key="index"
-            class="legend-item"
-          >
-            <span
-              class="legend-color"
-              :style="{
-                backgroundColor: chartData.datasets[0].backgroundColor[index],
-              }"
-            ></span>
-            <span class="legend-label">{{ channel }}</span>
+      <div class="doughnut-chart-container">
+        <div class="legend">
+          <div class="legend-column">
+            <div
+              v-for="(channel, index) in chartData.labels.slice(0, 5)"
+              :key="index"
+              class="legend-item"
+            >
+              <span
+                class="legend-color"
+                :style="{
+                  backgroundColor: chartData.datasets[0].backgroundColor[index],
+                }"
+              ></span>
+              <span class="legend-label">{{ channel }}</span>
+            </div>
+          </div>
+          <div class="legend-gap"></div>
+          <div class="legend-column">
+            <div
+              v-for="(channel, index) in chartData.labels.slice(5)"
+              :key="index"
+              class="legend-item"
+            >
+              <span
+                class="legend-color"
+                :style="{
+                  backgroundColor:
+                    chartData.datasets[0].backgroundColor[index + 5],
+                }"
+              ></span>
+              <span class="legend-label">{{ channel }}</span>
+            </div>
           </div>
         </div>
-        <div class="legend-gap"></div>
-        <div class="legend-column">
-          <div
-            v-for="(channel, index) in chartData.labels.slice(5)"
-            :key="index"
-            class="legend-item"
-          >
-            <span
-              class="legend-color"
-              :style="{
-                backgroundColor:
-                  chartData.datasets[0].backgroundColor[index + 5],
-              }"
-            ></span>
-            <span class="legend-label">{{ channel }}</span>
+        <div class="doughnut-wrapper">
+          <div class="chart">
+            <Doughnut :data="chartData" :options="chartOptions" />
+          </div>
+          <div class="inner-doughnut">
+            <p>Total</p>
+            <p>Transactions</p>
+            <h2>{{ transactionValue }}</h2>
           </div>
         </div>
       </div>
-      <div class="doughnut-wrapper"><div class="chart">
-        <Doughnut :data="chartData" :options="chartOptions" />
-      </div>
-      <div class="inner-doughnut">
-      <p>Total</p>
-      <p>Transactions</p>
-      <h2>28000</h2>
     </div>
-      </div>
-    </div>
-    </div>
-    
   </div>
 </template>
 
@@ -105,20 +105,38 @@ ChartJS.register(
 export default {
   name: "DoughnutChart",
   components: { Doughnut },
+  props: {
+    transactionValue: Number,
+    topCategory: String,
+    activeCategory: String,
+    activeAmount: Number,
+    inactiveCategory: String,
+    inactiveAmount: Number,
+    type1: String,
+    type2: String,
+    type3: String,
+    type4: String,
+    type5: String,
+    type6: String,
+    type7: String,
+    type8: String,
+    type9: String,
+    type10: String,
+  },
   data() {
     return {
       chartData: {
         labels: [
-          "Channel 1",
-          "Channel 2",
-          "Channel 3",
-          "Channel 4",
-          "Channel 5",
-          "Channel 6",
-          "Channel 7",
-          "Channel 8",
-          "Channel 9",
-          "Channel 10",
+          this.type1,
+          this.type2,
+          this.type3,
+          this.type4,
+          this.type5,
+          this.type6,
+          this.type7,
+          this.type8,
+          this.type9,
+          this.type10,
         ],
         datasets: [
           {
@@ -152,7 +170,6 @@ export default {
 </script>
 
 <style scoped>
-
 .overview-description {
   display: flex;
   justify-content: space-between;
@@ -162,26 +179,25 @@ export default {
 .column-one {
   width: 220px;
   height: 80px;
-  margin-top:50px;
-  margin-left:80px;
+  margin-top: 50px;
+  margin-left: 40px;
 }
 
 .column-two,
 .column-three {
   background-color: #e8eaef;
   border-radius: 8px;
-  width:220px;
+  width: 220px;
   height: 80px;
-  margin-top:5px;
-  margin-left:30px;
+  margin-top: 5px;
+  margin-left: 30px;
   padding: 5px;
 }
 
 .column-two img,
-.column-three img{
-padding-left: 10px;
-padding-right:10px
-
+.column-three img {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .columns {
   display: flex;
@@ -191,13 +207,13 @@ padding-right:10px
 .column-one h2 {
   font-family: poppins;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   color: #1b2559;
 }
 .column-one p {
   font-family: poppins;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   color: #757575;
 }
 
@@ -212,7 +228,7 @@ padding-right:10px
 .column-three p {
   font-family: poppins;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   color: #757575;
 }
 
@@ -221,8 +237,8 @@ padding-right:10px
   gap: 6px;
   margin-top: 5px;
 }
-.doughnut-wrapper{
-  position:relative;
+.doughnut-wrapper {
+  position: relative;
 }
 .doughnut-chart-container {
   display: flex;
@@ -235,31 +251,30 @@ padding-right:10px
   box-shadow: 0.2px 0.2px 3px 3px rgba(204, 204, 204, 0.25);
   background-color: white;
 }
-.inner-doughnut{
-  position:absolute;
+.inner-doughnut {
+  position: absolute;
   top: 50%;
-  left:45%;
+  left: 45%;
   text-align: center;
   /* transform: translate(-50%, -50%); */
 }
-.inner-doughnut p{
-font-family:poppins;
-font-size:15px;
-font-weight:400;
-color:#64676A
+.inner-doughnut p {
+  font-family: poppins;
+  font-size: 15px;
+  font-weight: 400;
+  color: #64676a;
 }
-.inner-doughnut h2{
-font-family:poppins;
-font-size:21.21px;
-font-weight: 700;
-color:#231F20;
+.inner-doughnut h2 {
+  font-family: poppins;
+  font-size: 21.21px;
+  font-weight: 700;
+  color: #231f20;
 }
 .legend {
   display: flex;
   margin: 20px;
   width: 300px;
   height: 600px;
-  
 }
 
 .legend-column {
@@ -294,5 +309,4 @@ color:#231F20;
   font-weight: 500;
   color: #64676a;
 }
-
 </style>
